@@ -56,6 +56,7 @@ type
     lstCst_56_66             : TList<string>;
     lstCst_55_65             : TList<string>;
 
+    lstCST_PISCOFINS_TRIB    : TList<string>;
     lstCST_PISCOFINS_NTRIB   : TList<string>;
 
     FComparerM100 : IComparer<TJSSpedContribuicoesModelRegistroM100>;
@@ -384,6 +385,13 @@ begin
   lstReceitaExportacao.Add('307');
   lstReceitaExportacao.Add('308');
   lstReceitaExportacao.Add('399');
+
+  if not Assigned(lstCST_PISCOFINS_TRIB) then
+    lstCST_PISCOFINS_TRIB := TList<string>.Create;
+
+  lstCST_PISCOFINS_TRIB.Add('01');
+  lstCST_PISCOFINS_TRIB.Add('02');
+  lstCST_PISCOFINS_TRIB.Add('03');
 
   if not Assigned(lstCST_PISCOFINS_NTRIB) then
     lstCST_PISCOFINS_NTRIB := TList<string>.Create;
@@ -864,6 +872,9 @@ begin
 
   if Assigned(lstCst_55_65) then
     lstCst_55_65.Free;
+
+  if Assigned(lstCST_PISCOFINS_TRIB) then
+    lstCST_PISCOFINS_TRIB.Free;
 
   if Assigned(lstCST_PISCOFINS_NTRIB) then
     lstCST_PISCOFINS_NTRIB.Free;
@@ -1639,7 +1650,8 @@ begin
     Exit;
 
   RegA170 := TJSSpedContribuicoesModelRegistroA170(AModel);
-  if RegA170.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegA170.cstCofins) and
+     (RegA170.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegA170.GetValueStr('CODCONT');
@@ -1671,7 +1683,8 @@ begin
     Exit;
 
   RegC170 := TJSSpedContribuicoesModelRegistroC170(AModel);
-  if RegC170.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC170.cstCofins) and
+     (RegC170.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC170.GetValueStr('CODCONT');
@@ -1704,7 +1717,8 @@ begin
     Exit;
 
   RegC175 := TJSSpedContribuicoesModelRegistroC175(AModel);
-  if RegC175.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC175.cstCofins) and
+     (RegC175.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC175.GetValueStr('CODCONT');
@@ -1737,7 +1751,8 @@ begin
     Exit;
 
   RegC185 := TJSSpedContribuicoesModelRegistroC185(AModel);
-  if RegC185.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC185.cstCofins) and
+     (RegC185.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC185.GetValueStr('CODCONT');
@@ -1770,7 +1785,8 @@ begin
     Exit;
 
   RegC385 := TJSSpedContribuicoesModelRegistroC385(AModel);
-  if RegC385.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC385.cstCofins) and
+     (RegC385.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC385.GetValueStr('CODCONT');
@@ -1803,7 +1819,8 @@ begin
     Exit;
 
   RegC485 := TJSSpedContribuicoesModelRegistroC485(AModel);
-  if RegC485.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC485.cstCofins) and
+     (RegC485.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC485.GetValueStr('CODCONT');
@@ -1836,7 +1853,8 @@ begin
     Exit;
 
   RegC495 := TJSSpedContribuicoesModelRegistroC495(AModel);
-  if RegC495.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC495.cstCofins) and
+     (RegC495.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC495.GetValueStr('CODCONT');
@@ -1869,7 +1887,8 @@ begin
     Exit;
 
   RegC810 := TJSSpedContribuicoesModelRegistroC810(AModel);
-  if RegC810.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC810.cstCofins) and
+     (RegC810.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC810.GetValueStr('CODCONT');
@@ -1902,7 +1921,8 @@ begin
     Exit;
 
   RegC870 := TJSSpedContribuicoesModelRegistroC870(AModel);
-  if RegC870.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC870.cstCofins) and
+     (RegC870.vlBcPis > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegC870.GetValueStr('CODCONT');
@@ -1935,7 +1955,8 @@ begin
     Exit;
 
   RegD205 := TJSSpedContribuicoesModelRegistroD205(AModel);
-  if RegD205.vlBcCofins > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegD205.cstCofins) and
+     (RegD205.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegD205.GetValueStr('CODCONT');
@@ -1968,7 +1989,8 @@ begin
     Exit;
 
   RegF100 := TJSSpedContribuicoesModelRegistroF100(AModel);
-  if (RegF100.vlBcCofins > 0) and
+  if lstCST_PISCOFINS_TRIB.Contains(RegF100.cstCofins) and
+     (RegF100.vlBcCofins > 0) and
      (RegF100.aliqCofins > 0) and
      (RegF100.vlOper > 0)  and
      (RegF100.indOper <> tofAquisicaoPisCofins) then
@@ -2005,7 +2027,8 @@ begin
     Exit;
 
   RegF200 := TJSSpedContribuicoesModelRegistroF200(AModel);
-  if (RegF200.vlBcCofins > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF200.cstCofins) and
+     (RegF200.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegF200.GetValueStr('CODCONT');
@@ -2038,7 +2061,8 @@ begin
     Exit;
 
   RegF500 := TJSSpedContribuicoesModelRegistroF500(AModel);
-  if (RegF500.vlBcCofins > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF500.cstCofins) and
+     (RegF500.vlBcCofins > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegF500.GetValueStr('CODCONT');
@@ -2071,7 +2095,8 @@ begin
     Exit;
 
   RegF550 := TJSSpedContribuicoesModelRegistroF550(AModel);
-  if (RegF550.vlRecComp > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF550.cstCofins) and
+     (RegF550.vlRecComp > 0) then
   begin
     RegM610 := TJSSpedContribuicoesModelRegistroM610.create;
     RegM610.codCont    := RegF550.GetValueStr('CODCONT');
@@ -2157,7 +2182,8 @@ begin
     Exit;
 
   RegA170 := TJSSpedContribuicoesModelRegistroA170(AModel);
-  if RegA170.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegA170.cstPis) and
+     (RegA170.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegA170.GetValueStr('CODCONT');
@@ -2189,7 +2215,8 @@ begin
     Exit;
 
   RegC170 := TJSSpedContribuicoesModelRegistroC170(AModel);
-  if RegC170.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC170.cstPis) and
+     (RegC170.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC170.GetValueStr('CODCONT');
@@ -2222,7 +2249,8 @@ begin
     Exit;
 
   RegC175 := TJSSpedContribuicoesModelRegistroC175(AModel);
-  if RegC175.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC175.cstPis) and
+     (RegC175.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC175.GetValueStr('CODCONT');
@@ -2255,7 +2283,8 @@ begin
     Exit;
 
   RegC181 := TJSSpedContribuicoesModelRegistroC181(AModel);
-  if RegC181.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC181.cstPis) and
+     (RegC181.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC181.GetValueStr('CODCONT');
@@ -2288,7 +2317,8 @@ begin
     Exit;
 
   RegC381 := TJSSpedContribuicoesModelRegistroC381(AModel);
-  if RegC381.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC381.cstPis) and
+     (RegC381.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC381.GetValueStr('CODCONT');
@@ -2321,7 +2351,8 @@ begin
     Exit;
 
   RegC481 := TJSSpedContribuicoesModelRegistroC481(AModel);
-  if RegC481.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC481.cstPis) and
+     (RegC481.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC481.GetValueStr('CODCONT');
@@ -2354,7 +2385,8 @@ begin
     Exit;
 
   RegC491 := TJSSpedContribuicoesModelRegistroC491(AModel);
-  if RegC491.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC491.cstPis) and
+     (RegC491.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC491.GetValueStr('CODCONT');
@@ -2387,7 +2419,8 @@ begin
     Exit;
 
   RegC810 := TJSSpedContribuicoesModelRegistroC810(AModel);
-  if RegC810.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC810.cstPis) and
+     (RegC810.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC810.GetValueStr('CODCONT');
@@ -2420,7 +2453,8 @@ begin
     Exit;
 
   RegC870 := TJSSpedContribuicoesModelRegistroC870(AModel);
-  if RegC870.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegC870.cstPis) and
+     (RegC870.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegC870.GetValueStr('CODCONT');
@@ -2453,7 +2487,8 @@ begin
     Exit;
 
   RegD201 := TJSSpedContribuicoesModelRegistroD201(AModel);
-  if RegD201.vlBcPis > 0 then
+  if lstCST_PISCOFINS_TRIB.Contains(RegD201.cstPis) and
+     (RegD201.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegD201.GetValueStr('CODCONT');
@@ -2486,7 +2521,8 @@ begin
     Exit;
 
   RegF100 := TJSSpedContribuicoesModelRegistroF100(AModel);
-  if (RegF100.vlBcPis > 0) and
+  if lstCST_PISCOFINS_TRIB.Contains(RegF100.cstPis) and
+     (RegF100.vlBcPis > 0) and
      (RegF100.aliqPis > 0) and
      (RegF100.vlOper > 0)  and
      (RegF100.indOper <> tofAquisicaoPisCofins) then
@@ -2523,7 +2559,8 @@ begin
     Exit;
 
   RegF200 := TJSSpedContribuicoesModelRegistroF200(AModel);
-  if (RegF200.vlBcPis > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF200.cstPis) and
+     (RegF200.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegF200.GetValueStr('CODCONT');
@@ -2556,7 +2593,8 @@ begin
     Exit;
 
   RegF500 := TJSSpedContribuicoesModelRegistroF500(AModel);
-  if (RegF500.vlBcPis > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF500.cstPis) and
+     (RegF500.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegF500.GetValueStr('CODCONT');
@@ -2589,7 +2627,8 @@ begin
     Exit;
 
   RegF550 := TJSSpedContribuicoesModelRegistroF550(AModel);
-  if (RegF550.vlBcPis > 0) then
+  if lstCST_PISCOFINS_TRIB.Contains(RegF550.cstPis) and
+     (RegF550.vlBcPis > 0) then
   begin
     RegM210 := TJSSpedContribuicoesModelRegistroM210.create;
     RegM210.codCont  := RegF550.GetValueStr('CODCONT');
