@@ -12,7 +12,8 @@ type
 
   TJSSpedContribuicoesFormat = class
   public
-    class function formatData    (AValue: TDateTime): String;
+    class function formatData    (AValue: TDateTime): String; overload;
+    class function formatData    (AValue: String): TDateTime; overload;
     class function formatCurrency(AValue: Double; ANumDecimais: Integer = 2; AFormatZero: TJSSpedContribuicoesFormatZero = fzFormatIfZero): String;
     class function PadL(AValue: String; ATam: Integer; ACaracter: Char = '0'): String;
 
@@ -53,6 +54,13 @@ begin
   Result := EmptyStr;
   if AValue > 0 then
     result := FormatDateTime('ddmmyyyy', AValue);
+end;
+
+class function TJSSpedContribuicoesFormat.formatData(AValue: String): TDateTime;
+begin
+  Result := 0;
+  if AValue <> '' then
+    Result := StrToDate(Format('%s/%s/%s',[Copy(AValue,1,2), Copy(AValue,3,2), Copy(AValue,5,4)]));
 end;
 
 class function TJSSpedContribuicoesFormat.PadL(AValue: String; ATam: Integer; ACaracter: Char): String;

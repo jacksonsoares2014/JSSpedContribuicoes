@@ -163,6 +163,7 @@ type
   TJSSpedContribuicoesIndicadorAtividadeHelper = record helper for TJSSpedContribuicoesIndicadorAtividade
     public
       function toString: string;
+      procedure fromString(s: String);
   end;
 
   TJSSpedContribuicoesIndicadorBemImobHelper = record helper for TJSSpedContribuicoesIndicadorBemImob
@@ -248,17 +249,20 @@ type
 
   TJSSpedContribuicoesIndicadorEmitenteHelper = record helper for TJSSpedContribuicoesIndicadorEmitente
     public
+      procedure fromString(s: string);
       function toString: string;
   end;
 
   TJSSpedContribuicoesIndicadorNaturezaPJHelper = record helper for TJSSpedContribuicoesIndicadorNaturezaPJ
     public
       function toString: string;
+      procedure fromString(s: string);
   end;
 
   TJSSpedContribuicoesIndicadorSituacaoEspecialHelper = record helper for TJSSpedContribuicoesIndicadorSituacaoEspecial
     public
       function toString: string;
+      procedure fromString(s: string);
   end;
 
   TJSSpedContribuicoesIndicadorUtilBemImobHelper = record helper for TJSSpedContribuicoesIndicadorUtilBemImob
@@ -280,6 +284,11 @@ type
   end;
 
   TJSSpedContribuicoesTipoEnquadramentoHelper = record helper for TJSSpedContribuicoesTipoEnquadramento
+    public
+      procedure fromString(s: string);
+  end;
+
+  TJSSpedContribuicoesTipoEscrituracaoHelper = record helper for  TJSSpedContribuicoesTipoEscrituracao
     public
       procedure fromString(s: string);
   end;
@@ -310,6 +319,7 @@ type
 
   TJSSpedContribuicoesTipoOperacaoServicoHelper = record helper for TJSSpedContribuicoesTipoOperacaoServico
     public
+      procedure fromString(s: string);
       function toString: string;
       function Caption: string;
   end;
@@ -397,6 +407,14 @@ begin
 end;
 
 { TJSSpedContribuicoesIndicadorEmitenteHelper }
+
+procedure TJSSpedContribuicoesIndicadorEmitenteHelper.fromString(s: string);
+begin
+  if s = '0' then
+    Self := iePropria
+  else if s = '1' then
+    Self := ieTerceiros;
+end;
 
 function TJSSpedContribuicoesIndicadorEmitenteHelper.toString: string;
 begin
@@ -501,6 +519,14 @@ begin
   end;
 end;
 
+procedure TJSSpedContribuicoesTipoOperacaoServicoHelper.fromString(s: string);
+begin
+  if s = '0' then
+    Self := tosAquisicao
+  else if s = '1' then
+    Self := tosPrestacao;
+end;
+
 function TJSSpedContribuicoesTipoOperacaoServicoHelper.toString: string;
 begin
   case Self of
@@ -510,6 +536,21 @@ begin
 end;
 
 { TJSSpedContribuicoesIndicadorSituacaoEspecialHelper }
+
+procedure TJSSpedContribuicoesIndicadorSituacaoEspecialHelper.fromString(
+  s: string);
+begin
+  if s = '0' then
+    Self := iseAbertura
+  else if s = '1' then
+    Self := iseCisao
+  else if s = '2' then
+    Self := iseFusao
+  else if s = '3' then
+    Self := iseIncorporacao
+  else if s = '4' then
+    Self := iesEncerramento
+end;
 
 function TJSSpedContribuicoesIndicadorSituacaoEspecialHelper.toString: string;
 begin
@@ -526,6 +567,22 @@ end;
 
 { TJSSpedContribuicoesIndicadorAtividadeHelper }
 
+procedure TJSSpedContribuicoesIndicadorAtividadeHelper.fromString(s: String);
+begin
+  if s = '0' then
+    Self := iaIndustrial
+  else if s = '1' then
+    Self := iaPrestadorServicos
+  else if s = '2' then
+    Self := iaAtividadeComercio
+  else if s = '3' then
+    Self := iaPessoasJuridicas
+  else if s = '4' then
+    Self := iaAtividadeImobiliaria
+  else if s = '9' then
+    Self := iaOutros;
+end;
+
 function TJSSpedContribuicoesIndicadorAtividadeHelper.toString: string;
 begin
   case self of
@@ -541,6 +598,20 @@ begin
 end;
 
 { TJSSpedContribuicoesIndicadorNaturezaPJHelper }
+
+procedure TJSSpedContribuicoesIndicadorNaturezaPJHelper.fromString(s: string);
+begin
+  if s = '00' then
+    Self := inPessoaJuridicaNaoParticipante
+  else if s = '01' then
+    Self := inSociedadeCooperativaNaoParticipante
+  else if s = '03' then
+    Self := inPessoaJuridicaParticipante
+  else if s = '04' then
+    Self := inSociedadeCooperativaParticipante
+  else if s = '05' then
+    Self := inSociedadeContaDeParticipacao;
+end;
 
 function TJSSpedContribuicoesIndicadorNaturezaPJHelper.toString: string;
 begin
@@ -892,6 +963,16 @@ constructor TRecCodigoPorEst.create(AcodEst: String; Acodigo: String);
 begin
   FcodEst := AcodEst;
   Fcodigo := Acodigo;
+end;
+
+{ TJSSpedContribuicoesTipoEscrituracaoHelper }
+
+procedure TJSSpedContribuicoesTipoEscrituracaoHelper.fromString(s: string);
+begin
+  if s = '0' then
+    Self := teOriginal
+  else if s = '1' then
+    Self := teRetificadora;
 end;
 
 end.
