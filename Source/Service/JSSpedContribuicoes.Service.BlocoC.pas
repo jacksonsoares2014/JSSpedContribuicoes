@@ -356,10 +356,6 @@ begin
         raise Exception.Create(Format('O item %s do documento número %s de %s, possui CST PIS diferente do CST COFINS.',
                                       [RegC170.codItem,ARegC100.numDoc,ARegC100.indOper.Caption]));
 
-      if (regC170.cstPis <> regC170.cstCofins) then
-        raise Exception.Create(Format('O item %s do documento número %s de %s, possui CST PIS diferente do CST COFINS.',
-                                      [RegC170.codItem,ARegC100.numDoc,ARegC100.indOper.Caption]));
-
       if (regC170.vlBcPis <> regC170.vlBcCofins) then
         raise Exception.Create(Format('O item %s do documento número %s de %s, possui Base de PIS diferente da base de COFINS.',
                                       [RegC170.codItem,ARegC100.numDoc,ARegC100.indOper.Caption]));
